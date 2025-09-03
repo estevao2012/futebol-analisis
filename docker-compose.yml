@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  jupyter:
+    build: .
+    container_name: football_jupyter
+    ports:
+      - "8888:8888"
+      - "4040:4040"  # Spark UI
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - SPARK_MASTER=local[*]
+      - GRANT_SUDO=yes
+      - JUPYTER_TOKEN=''
+    volumes:
+      - .:/home/jovyan/work
+      - ./data:/home/jovyan/data
+    working_dir: /home/jovyan
+    command: start-notebook.sh --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_root=True
