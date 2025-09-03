@@ -1,22 +1,41 @@
 # Análise de Eventos de Futebol (execução via Docker)
 
-Para executar este projeto, utilize Docker.
+Execute este projeto usando Docker Compose.
 
-1. Execute a imagem oficial Jupyter com Spark:
+## 1) Criar docker-compose.yml na raiz do projeto
 
-```bash
-docker run -it --rm \
-  -p 8888:8888 -p 4040:4040 \
-  -v "$(pwd)":/home/jovyan/work \
-  jupyter/pyspark-notebook:latest
+```yaml
+version: '3.8'
+services:
+  jupyter:
+    image: jupyter/pyspark-notebook:latest
+    container_name: football_jupyter
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - GRANT_SUDO=yes
+    ports:
+      - "8888:8888"
+      - "4040:4040"  # Spark UI
+    volumes:
+      - .:/home/jovyan/work
+    working_dir: /home/jovyan
+    command: start-notebook.sh --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_root=True
 ```
 
-2. Acesse o Jupyter na porta 8888 informada no terminal.
+## 2) Subir o ambiente
 
-3. Abra o notebook em:
-- work/Analise_Campeonato_Brasileiro_2025_Final.ipynb
+```bash
+docker-compose up -d
+```
 
-4. Execute todas as células na ordem indicada no notebook:
+## 3) URLs de acesso
+- Jupyter: http://localhost:8888
+- Spark UI: http://localhost:4040
+
+## 4) Abrir o notebook
+- Caminho no Jupyter: work/Analise_Campeonato_Brasileiro_2025_Final.ipynb
+
+## 5) Executar as células (nesta ordem)
 - Setup
 - Geração de dados
 - Publicação (file sink)
@@ -24,8 +43,7 @@ docker run -it --rm \
 - Análises, ML e gráficos
 - Encerrar Spark
 
-5. Spark UI disponível em http://localhost:4040 (durante a sessão Spark).
-
-Observações:
-- Os diretórios data/stream_inbox e data/stream_ckpt são gerados em tempo de execução e estão ignorados no versionamento.
-- O processamento ocorre sequencialmente sem esperas artificiais.
+## 6) Encerrar o ambiente
+```bash
+docker-compose down
+```
