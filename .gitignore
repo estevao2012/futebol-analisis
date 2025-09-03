@@ -25,8 +25,11 @@ spark-warehouse/
 derby.log
 
 # Project streaming data (not relevant to versioning)
+# Ignore at root and from any nested modules
 data/stream_inbox/
 data/stream_ckpt/
+**/data/stream_inbox/
+**/data/stream_ckpt/
 
 # Environment
 .env
