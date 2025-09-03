@@ -36,12 +36,7 @@ docker-compose up -d
 - Caminho no Jupyter: work/Analise_Campeonato_Brasileiro_2025_Final.ipynb
 
 ## 5) Executar as células (nesta ordem)
-- Setup
-- Geração de dados
-- Publicação (file sink)
-- Leitura (structured streaming com trigger once)
-- Análises, ML e gráficos
-- Encerrar Spark
+- Run > Restart Kernel And Run All Cells
 
 ## 6) Encerrar o ambiente
 ```bash
