@@ -26,10 +26,9 @@ derby.log
 
 # Project streaming data (not relevant to versioning)
 # Ignore at root and from any nested modules
-data/stream_inbox/
-data/stream_ckpt/
-**/data/stream_inbox/
-**/data/stream_ckpt/
+data/
+**/data/
+# If you need specific subfolders, un-ignore with: !data/some_subdir/
 
 # Environment
 .env
