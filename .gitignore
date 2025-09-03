@@ -1,0 +1,34 @@
+# Python / Virtualenv
+.venv/
+venv/
+env/
+.pyenv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_convert/
+
+# macOS / OS files
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Spark local data/metadata
+spark-warehouse/
+.metastore_db/
+derby.log
+
+# Project streaming data (not relevant to versioning)
+data/stream_inbox/
+data/stream_ckpt/
+
+# Environment
+.env
+.env.*
+
